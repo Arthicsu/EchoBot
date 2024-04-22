@@ -79,7 +79,7 @@ async def send_voice_echo(message: Message):
 async def send_echo(message: Message):
     print(message)
     await message.reply(text=message.text)
-
+    await message.answer(f"В чат с id = {message.chat.id} поступило обычное сообщение от {message.from_user.username}")
 
 dp.message.register(process_start_command, Command(commands='start'))
 dp.message.register(process_help_command, Command(commands='help'))

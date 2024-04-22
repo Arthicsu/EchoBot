@@ -76,6 +76,12 @@ async def send_voice_echo(message: Message):
     await message.answer(f"В чат с id = {message.chat.id} поступило голосовое сообщение от {message.from_user.username}")
 
 
+async def send_voice_note_echo(message: Message):
+    print(message)
+    await message.reply_voice_note(message.voice_note.file_id)
+    await message.answer(f"В чат с id = {message.chat.id} поступило голосовое сообщение от {message.from_user.username}")
+
+
 async def send_echo(message: Message):
     print(message)
     await message.reply(text=message.text)
@@ -92,6 +98,7 @@ dp.message.register(send_video_echo, F.video)
 dp.message.register(send_document_echo, F.document)
 dp.message.register(send_animation_echo, F.animation)
 dp.message.register(send_voice_echo, F.voice)
+dp.message.register(send_voice_note_echo, F.voice_note)
 dp.message.register(send_echo)
 
 if __name__ == '__main__':
